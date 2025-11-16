@@ -7,7 +7,7 @@ except ModuleNotFoundError:
     input("There is no necessary library. Complete the command line command: PIP Install Pytelegrambotapi")
 
 url = "https://leakosintapi.com/"
-bot_token = "" #Insert here the token received from @botfather
+bot_token = "8395895550:AAE8ucM2C_YZ76vAxcA7zInt1Nv41Fcm6NQ" #Insert here the token received from @botfather
 api_token = ""  #Insert here the token received from Leakosint
 lang = "en"
 limit = 300
@@ -59,7 +59,7 @@ def create_inline_keyboard(query_id, page_id, count_page):
 bot = telebot.TeleBot(bot_token)
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
-    bot.reply_to(message, "Hello! I am a telegram-boot that can search for databases.", parse_mode="Markdown")
+    bot.reply_to(message, "Hello! I am a telegram-bot mob to info all supported like car ip address aadhar name etc by toxic nex", parse_mode="Markdown")
 
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):
