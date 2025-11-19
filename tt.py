@@ -56,9 +56,7 @@ def generate_report(query, query_id):
                 text.append("")
         text = "".join(text)
         if len(text) > 3500:
-            text = text[:3500] + text[3500:].split("")[0] + "
-
-Some data did not fit this message"
+            text = text[:3500] + text[3500:].split("")[0] + "Some data did not fit this message"
         cash_reports[str(query_id)].append(text)
     return cash_reports[str(query_id)]
 
