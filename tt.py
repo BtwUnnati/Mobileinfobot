@@ -7,34 +7,36 @@ except ModuleNotFoundError:
     input("There is no necessary library. Complete the command line command: PIP Install Pytelegrambotapi")
 
 url = "https://leakosintapi.com/"
-bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"  # Insert here the token received from @botfather
-api_token = "7191462072:sHndGQ1f"  # Insert here the token received from Leakosint
+bot_token = "YOUR_BOT_TOKEN"  
+api_token = "YOUR_API_TOKEN" 
 lang = "en"
 limit = 300
 
-# Channels to force join
-required_channels = ["nikumust", "nikumust"]  # Replace with your required channel usernames
-owner_username = "esxnz"  # Replace with your Telegram username without '@'
+
+required_channels = [-1001234567890, -1009876543210]  
+
+
+private_channel_invite_links = [
+    "",
+    ""
+]
+
 
 bot = telebot.TeleBot(bot_token)
 
-# In this function, you can check whether the user has access to
 def user_access_test(user_id):
     return True
 
-# Check if user is member of all required channels
 def check_user_in_channels(user_id):
     for channel in required_channels:
         try:
             member = bot.get_chat_member(channel, user_id)
-            if member.status in ['left', 'kicked']:
+            if member.status in ['left', 'kicked', 'restricted']:
                 return False
-        except Exception as e:
-            # Could not get membership - treat as not member
+        except:
             return False
     return True
 
-# Function for generating reports
 cash_reports = {}
 
 def generate_report(query, query_id):
@@ -60,7 +62,6 @@ def generate_report(query, query_id):
         cash_reports[str(query_id)].append(text)
     return cash_reports[str(query_id)]
 
-# Function for creating an inline keyboard
 def create_inline_keyboard(query_id, page_id, count_page):
     markup = InlineKeyboardMarkup()
     if page_id < 0:
@@ -75,13 +76,11 @@ def create_inline_keyboard(query_id, page_id, count_page):
                InlineKeyboardButton(text=">>", callback_data=f"/page {query_id} {page_id+1}"))
     return markup
 
-# Create join alert keyboard with owner and channels links
 def join_alert_keyboard():
     markup = InlineKeyboardMarkup()
     buttons = []
-    # Add channel join buttons
-    for ch in required_channels:
-        buttons.append(InlineKeyboardButton(text=f"Must Join", url=f"https://t.me/{ch.replace('@','')}"))
+    for invite_link in private_channel_invite_links:
+        buttons.append(InlineKeyboardButton(text="Must Join Channel", url=invite_link))
     markup.add(*buttons)
     return markup
 
@@ -91,7 +90,7 @@ def send_welcome(message):
     if not check_user_in_channels(user_id):
         bot.send_message(
             message.chat.id,
-            "🚫 You must join all required channels to use this bot.Please join and then send /start again.",
+            "🚫 You must join all required channels to use this bot. Please join and then send /start again.",
             reply_markup=join_alert_keyboard()
         )
         return
@@ -120,7 +119,6 @@ def echo_message(message):
         try:
             bot.send_message(message.chat.id, report[0], parse_mode="html", reply_markup=markup)
         except telebot.apihelper.ApiTelegramException:
-            # Fallback for formatting issues
             bot.send_message(message.chat.id, text=report[0].replace("<b>", "").replace("</b>", ""), reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: True)
