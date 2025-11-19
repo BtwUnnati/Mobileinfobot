@@ -6,7 +6,7 @@ try:
 except ModuleNotFoundError:
     input("There is no necessary library. Complete the command line command: PIP Install Pytelegrambotapi")
 
-url = ""
+url = "https://leakosintapi.com/"
 bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"
 api_token = "7191462072:sHndGQ1f"
 lang = "en"
