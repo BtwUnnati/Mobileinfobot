@@ -39,8 +39,7 @@ cash_reports = {}
 
 def generate_report(query, query_id):
     global cash_reports, url, bot_token, api_token, limit, lang
-    data = {"token": api_token, "request": query.split("
-")[0], "limit": limit, "lang": lang}
+    data = {"token": api_token, "request": query.split("")[0], "limit": limit, "lang": lang}
     response = requests.post(url, json=data).json()
     print(response)
     if "Error code" in response:
@@ -49,18 +48,15 @@ def generate_report(query, query_id):
     cash_reports[str(query_id)] = []
     for database_name in response["List"].keys():
         text = [f"<b>{database_name}</b>", ""]
-        text.append(response["List"][database_name]["InfoLeak"]+"
-")
+        text.append(response["List"][database_name]["InfoLeak"]+"")
         if database_name != "No results found":
             for report_data in response["List"][database_name]["Data"]:
                 for column_name in report_data.keys():
                     text.append(f"<b>{column_name}</b>:  {report_data[column_name]}")
                 text.append("")
-        text = "
-".join(text)
+        text = "".join(text)
         if len(text) > 3500:
-            text = text[:3500] + text[3500:].split("
-")[0] + "
+            text = text[:3500] + text[3500:].split("")[0] + "
 
 Some data did not fit this message"
         cash_reports[str(query_id)].append(text)
@@ -99,8 +95,7 @@ def send_welcome(message):
     if not check_user_in_channels(user_id):
         bot.send_message(
             message.chat.id,
-            "🚫 You must join all required channels to use this bot.
-Please join and then send /start again.",
+            "🚫 You must join all required channels to use this bot.Please join and then send /start again.",
             reply_markup=join_alert_keyboard()
         )
         return
@@ -115,8 +110,7 @@ def echo_message(message):
     if not check_user_in_channels(user_id):
         bot.send_message(
             message.chat.id,
-            "🚫 You must join all required channels to use this bot.
-Please join and try again.",
+            "🚫 You must join all required channels to use this bot. Please join and try again.",
             reply_markup=join_alert_keyboard()
         )
         return
