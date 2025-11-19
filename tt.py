@@ -81,7 +81,7 @@ def join_alert_keyboard():
     buttons = []
     # Add channel join buttons
     for ch in required_channels:
-        buttons.append(InlineKeyboardButton(text=f"Must Join", url=f"https://t.me/{ch.replace('@','')}"))
+        buttons.append(InlineKeyboardButton(text=f"Must Join", url="https://t.me/+op6LDmshc785ZGY9"))
     markup.add(*buttons)
     return markup
 
