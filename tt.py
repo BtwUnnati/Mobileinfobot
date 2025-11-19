@@ -6,35 +6,38 @@ try:
 except ModuleNotFoundError:
     input("There is no necessary library. Complete the command line command: PIP Install Pytelegrambotapi")
 
-url = "https://leakosintapi.com/"
-bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"  
-api_token = "7191462072:sHndGQ1f" 
+url = ""
+bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"
+api_token = "7191462072:sHndGQ1f"
 lang = "en"
 limit = 300
 
+# Channels to force join
+required_channels = ["nikumust"]  # <--- duplicate hata diya
 
-required_channels = [-1001234567890, -1009876543210]  
-
-
-private_channel_invite_links = [
-    "https://t.me/+ft5ilzxnIW1hYzBl",
-    "https://t.me/+op6LDmshc785ZGY9"
-]
-
+owner_username = "esxnz"
 
 bot = telebot.TeleBot(bot_token)
 
-def user_access_test(user_id):
-    return True
-
+# -------- FIXED MUST JOIN CHECK --------
 def check_user_in_channels(user_id):
     for channel in required_channels:
         try:
+            # If using private link, Telegram cannot check – so skip check
+            if "https://t.me/" in channel:
+                continue
+
             member = bot.get_chat_member(channel, user_id)
-            if member.status in ['left', 'kicked', 'restricted']:
+            if member.status in ["left", "kicked"]:
                 return False
+
         except:
             return False
+
+    return True
+# ---------------------------------------
+
+def user_access_test(user_id):
     return True
 
 cash_reports = {}
@@ -76,13 +79,13 @@ def create_inline_keyboard(query_id, page_id, count_page):
                InlineKeyboardButton(text=">>", callback_data=f"/page {query_id} {page_id+1}"))
     return markup
 
+# -------- FIXED JOIN BUTTON (chat_id removed) --------
 def join_alert_keyboard():
     markup = InlineKeyboardMarkup()
-    buttons = []
-    for invite_link in private_channel_invite_links:
-        buttons.append(InlineKeyboardButton(text="Must Join Channel", url=invite_link))
-    markup.add(*buttons)
+    for ch in required_channels:
+        markup.add(InlineKeyboardButton(text="Must Join", url=f"https://t.me/{ch}"))
     return markup
+# -----------------------------------------------------
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -90,7 +93,7 @@ def send_welcome(message):
     if not check_user_in_channels(user_id):
         bot.send_message(
             message.chat.id,
-            "🚫 You must join all required channels to use this bot. Please join and then send /start again.",
+            "🚫 You must join all required channels to use this bot.Please join and then send /start again.",
             reply_markup=join_alert_keyboard()
         )
         return
