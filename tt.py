@@ -8,7 +8,7 @@ except ModuleNotFoundError:
 
 url = "https://leakosintapi.com/"
 bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"  # Insert here the token received from @botfather
-api_token = "5724339297:eYRu5pu4"  # Insert here the token received from Leakosint
+api_token = "7191462072:sHndGQ1f"  # Insert here the token received from Leakosint
 lang = "en"
 limit = 300
 
