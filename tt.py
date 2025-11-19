@@ -7,8 +7,8 @@ except ModuleNotFoundError:
     input("There is no necessary library. Complete the command line command: PIP Install Pytelegrambotapi")
 
 url = "https://leakosintapi.com/"
-bot_token = "YOUR_BOT_TOKEN"  
-api_token = "YOUR_API_TOKEN" 
+bot_token = "8240726765:AAFX4a2A9Mp_AJdl1FqUcmGivYsl0q2ksVI"  
+api_token = "7191462072:sHndGQ1f" 
 lang = "en"
 limit = 300
 
@@ -17,8 +17,8 @@ required_channels = [-1001234567890, -1009876543210]
 
 
 private_channel_invite_links = [
-    "",
-    ""
+    "https://t.me/+ft5ilzxnIW1hYzBl",
+    "https://t.me/+op6LDmshc785ZGY9"
 ]
 
 
