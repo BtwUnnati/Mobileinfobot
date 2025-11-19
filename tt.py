@@ -15,9 +15,9 @@ lang = "en"
 limit = 300
 
 # Admin configuration
-ADMIN_ID = 123456789  # Yaha apna admin Telegram user ID dale
-FORCE_JOIN_CHANNEL = "@yourchannel"  # Yaha apna channel username dale (@ ke sath)
-ADMIN_USERNAME = "@yourusername"  # Buy ke liye admin username
+ADMIN_ID = 8294942940  # Yaha apna admin Telegram user ID dale
+FORCE_JOIN_CHANNEL = "ToxicTechz"  # Yaha apna channel username dale (@ ke sath)
+ADMIN_USERNAME = "@esxnz"  # Buy ke liye admin username
 
 # Credit database file
 CREDITS_FILE = "user_credits.json"
