@@ -13,7 +13,7 @@ lang = "en"
 limit = 300
 
 # Channels to force join
-required_channels = ["@ToxicTechz", "@ToxicTechz"]  # Replace with your required channel usernames
+required_channels = ["", "@ToxicTechz"]  # Replace with your required channel usernames
 owner_username = "esxnz"  # Replace with your Telegram username without '@'
 
 bot = telebot.TeleBot(bot_token)
@@ -81,9 +81,7 @@ def join_alert_keyboard():
     buttons = []
     # Add channel join buttons
     for ch in required_channels:
-        buttons.append(InlineKeyboardButton(text=f"Join {ch}", url=f"https://t.me/{ch.replace('@','')}"))
-    # Add owner contact button
-    buttons.append(InlineKeyboardButton(text="Contact Owner", url=f"https://t.me/{owner_username}"))
+        buttons.append(InlineKeyboardButton(text=f"Must Join", url=f"https://t.me/+op6LDmshc785ZGY9", "https://t.me/+ft5ilzxnIW1hYzBl"))
     markup.add(*buttons)
     return markup
 
