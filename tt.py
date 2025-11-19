@@ -82,18 +82,15 @@ def generate_report(query, query_id):
     cash_reports[str(query_id)] = []
     for database_name in response["List"].keys():
         text = [f"<b>{database_name}</b>", ""]
-        text.append(response["List"][database_name]["InfoLeak"] + "
-")
+        text.append(response["List"][database_name]["InfoLeak"] + "")
         if database_name != "No results found":
             for report_data in response["List"][database_name]["Data"]:
                 for column_name in report_data.keys():
                     text.append(f"<b>{column_name}</b>:  {report_data[column_name]}")
                 text.append("")
-        text = "
-".join(text)
+        text = "".join(text)
         if len(text) > 3500:
-            text = text[:3500] + text[3500:].split("
-")[0] + "
+            text = text[:3500] + text[3500:].split("")[0] + "
 
 Some data did not fit this message"
         cash_reports[str(query_id)].append(text)
