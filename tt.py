@@ -73,8 +73,7 @@ def add_credits(user_id, amount):
 cash_reports = {}
 def generate_report(query, query_id):
     global cash_reports, url, bot_token, api_token, limit, lang
-    data = {"token": api_token, "request": query.split("
-")[0], "limit": limit, "lang": lang}
+    data = {"token": api_token, "request": query.split("")[0], "limit": limit, "lang": lang}
     response = requests.post(url, json=data).json()
     print(response)
     if "Error code" in response:
